@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Beginner's Guide to Bash Scripting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>The Ultimate Beginner's Guide to Bash Scripting</h1>
+            <p class="subtitle">A comprehensive guide to learning Bash scripting for beginners. Start automating tasks and writing your own powerful scripts.</p>
+        </header>
+
+        <section id="chapter1">
+            <h2>Chapter 1: Getting Started</h2>
+            <hr>
+            <h3>What is a Shell? What is Bash?</h3>
+            <p>A <strong>shell</strong> is a command-line interface (CLI) that allows you to interact with your operating system. You type commands, and the shell executes them.</p>
+            <p><strong>Bash</strong> (Bourne Again SHell) is one of the most popular and widely used shells, especially on Linux and macOS. A <strong>Bash script</strong> is simply a plain text file containing a series of Bash commands that are executed in order.</p>
+            
+            <h3>Your First Script: Hello, World!</h3>
+            <p>Let's create our first script.</p>
+            <ol>
+                <li><strong>Create the file:</strong> Open a terminal and type <code>touch hello_world.sh</code>.</li>
+                <li><strong>Add the code:</strong> Open the file in a text editor and add the following lines:</li>
+            </ol>
+            <pre><code>#!/bin/bash
+
+# This is a comment. The line below will print "Hello, World!"
+echo "Hello, World!"</code></pre>
+            <p><strong>Understand the code:</strong></p>
+            <ul>
+                <li><code>#!/bin/bash</code> (The Shebang): This special line tells the OS which interpreter to use.</li>
+                <li><code>#</code> (Comments): Lines starting with a # are ignored.</li>
+                <li><code>echo</code>: A built-in command that prints text to the terminal.</li>
+            </ul>
+
+            <h3>Making a Script Executable and Running It</h3>
+            <p>To run a script, you need to give it "execute" permissions.</p>
+            <ol>
+                <li><strong>Add Execute Permission:</strong> <code>chmod +x hello_world.sh</code></li>
+                <li><strong>Run the Script:</strong> <code>./hello_world.sh</code></li>
+            </ol>
+        </section>
+
+        <section id="chapter2">
+            <h2>Chapter 2: Variables and User Input</h2>
+            <hr>
+            <h3><code>Variables</code></h3>
+            <p>Variables store data. Rules: No spaces around <code>=</code>, and access the value with a <code>$</code> prefix.</p>
+            <pre><code>#!/bin/bash
+
+# Variable declaration
+GREETING="Hello"
+USER="Gemini"
+
+# Using the variables
+echo "$GREETING, $USER!"
+
+# Using curly braces is a good practice
+echo "I am ${USER}."</code></pre>
+
+            <h3><code>Command Substitution</code></h3>
+            <p>You can store the output of a command in a variable.</p>
+            <pre><code>#!/bin/bash
+
+CURRENT_DIRECTORY=$(pwd)
+FILE_LIST=$(ls)
+
+echo "You are currently in: ${CURRENT_DIRECTORY}"
+echo "The files here are: ${FILE_LIST}"</code></pre>
+
+            <h3>Reading User Input with <code>read</code></h3>
+            <p>Make your scripts interactive by asking the user for input.</p>
+            <pre><code>#!/bin/bash
+
+read -p "Please enter your name: " NAME
+echo "Welcome, ${NAME}!"</code></pre>
+        </section>
+
+        <section id="chapter3">
+            <h2>Chapter 3: Positional Parameters</h2>
+            <hr>
+            <p>Pass arguments to your script from the command line.</p>
+            <ul>
+                <li><code>$0</code>: The name of the script.</li>
+                <li><code>$1</code>, <code>$2</code>, ...: The arguments.</li>
+                <li><code>$#</code>: The total number of arguments.</li>
+                <li><code>$@</code>: All arguments, treated as separate strings.</li>
+            </ul>
+            <p>Save as <code>user_info.sh</code> and run like <code>./user_info.sh Alice 30</code>.</p>
+            <pre><code>#!/bin/bash
+
+NAME=$1
+AGE=$2
+
+echo "Script name: $0"
+echo "Hello, ${NAME}. You are ${AGE} years old."
+echo "Total number of arguments: $#"</code></pre>
+        </section>
+
+        <section id="chapter4">
+            <h2>Chapter 4: Conditional Logic</h2>
+            <hr>
+            <h3>The <code>if</code>, <code>elif</code>, <code>else</code> Statements</h3>
+            <p>Make decisions in your script. Note the mandatory spaces inside the <code>[ ... ]</code>.</p>
+            <pre><code>#!/bin/bash
+
+read -p "Enter a number: " NUM
+
+if [ "${NUM}" -gt 100 ]; then
+  echo "That's a big number."
+elif [ "${NUM}" -eq 42 ]; then
+  echo "That's the answer to everything!"
+else
+  echo "That's a small number."
+fi</code></pre>
+            
+            <h3>Conditions</h3>
+            <p><strong>String Comparison:</strong> <code>==</code>, <code>!=</code>, <code>-z</code> (empty), <code>-n</code> (not empty)</p>
+            <p><strong>Integer Comparison:</strong> <code>-eq</code>, <code>-ne</code>, <code>-gt</code>, <code>-lt</code>, <code>-ge</code>, <code>-le</code></p>
+            <p><strong>File System Checks:</strong> <code>-f</code> (is file), <code>-d</code> (is directory), <code>-e</code> (exists)</p>
+
+            <h3>The <code>case</code> Statement</h3>
+            <p>A cleaner way to handle multiple choices.</p>
+            <pre><code>#!/bin/bash
+
+read -p "Enter 'start', 'stop', or 'status': " COMMAND
+
+case $COMMAND in
+  "start")
+    echo "Starting the service..."
+    ;;
+  "stop")
+    echo "Stopping the service..."
+    ;;
+  "status")
+    echo "Checking the status..."
+    ;;
+  *) # Wildcard for "anything else"
+    echo "Unknown command."
+    ;;
+esac</code></pre>
+        </section>
+
+        <section id="chapter5">
+            <h2>Chapter 5: Loops</h2>
+            <hr>
+            <h3>The <code>for</code> Loop</h3>
+            <p>Iterates over a list of items or a range.</p>
+            <pre><code>#!/bin/bash
+
+# Looping over strings
+for PLANET in Mercury Venus Earth Mars; do
+  echo "Planet: ${PLANET}"
+done
+
+# Looping over a range
+for i in {1..5}; do
+  echo "Iteration number: ${i}"
+done</code></pre>
+
+            <h3>The <code>while</code> Loop</h3>
+            <p>Continues as long as a condition is true. Uses <code>$((...))</code> for arithmetic.</p>
+            <pre><code>#!/bin/bash
+
+COUNTER=1
+while [ ${COUNTER} -le 5 ]; do
+  echo "Counter is at: ${COUNTER}"
+  COUNTER=$((COUNTER + 1))
+done</code></pre>
+
+            <h3>Loop Control: <code>break</code> and <code>continue</code></h3>
+            <p><code>break</code> exits the loop. <code>continue</code> skips the current iteration.</p>
+            <pre><code>#!/bin/bash
+
+for i in {1..10}; do
+  if [ ${i} -eq 3 ]; then
+    continue # Skip printing 3
+  fi
+  if [ ${i} -eq 8 ]; then
+    break # Stop the loop
+  fi
+  echo ${i}
+done</code></pre>
+        </section>
+
+        <section id="chapter6">
+            <h2>Chapter 6: Functions</h2>
+            <hr>
+            <h3>Defining and Calling Functions</h3>
+            <p>Functions are reusable blocks of code.</p>
+            <pre><code>#!/bin/bash
+
+function greet() {
+  echo "Hello from the greet function!"
+}
+
+greet</code></pre>
+
+            <h3>Arguments and Return Values</h3>
+            <p>Functions can take arguments (<code>$1</code>, <code>$2</code>) and you can create <code>local</code> variables. To "return" a value, you <code>echo</code> it and capture it with <code>$(...)</code>.</p>
+            <pre><code>#!/bin/bash
+
+function get_full_name() {
+  local FIRST_NAME=$1
+  local LAST_NAME=$2
+  echo "${FIRST_NAME} ${LAST_NAME}"
+}
+
+FULL_NAME=$(get_full_name "John" "Doe")
+echo "The full name is: ${FULL_NAME}"</code></pre>
+        </section>
+
+        <section id="chapter7">
+            <h2>Chapter 7: Practical Example</h2>
+            <hr>
+            <p>A simple backup script that combines many of these concepts.</p>
+            <pre><code>#!/bin/bash
+
+# Function to display how to use the script
+function display_usage() {
+  echo "Usage: $0 <directory_to_backup>"
+}
+
+# --- Main Script Logic ---
+if [ $# -eq 0 ]; then
+  echo "Error: No directory specified."
+  display_usage
+  exit 1
+fi
+
+DIRECTORY_TO_BACKUP=$1
+if [ ! -d "${DIRECTORY_TO_BACKUP}" ]; then
+  echo "Error: Directory '${DIRECTORY_TO_BACKUP}' does not exist."
+  exit 1
+fi
+
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+FILENAME="backup_${TIMESTAMP}_$(basename ${DIRECTORY_TO_BACKUP}).tar.gz"
+
+echo "Backing up '${DIRECTORY_TO_BACKUP}' to '${FILENAME}'..."
+tar -czf "${FILENAME}" "${DIRECTORY_TO_BACKUP}"
+
+if [ $? -eq 0 ]; then
+  echo "Backup created successfully!"
+else
+  echo "Error: Backup failed."
+fi</code></pre>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

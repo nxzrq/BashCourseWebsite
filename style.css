@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Source+Code+Pro&display=swap');
+
+:root {
+    --bg-color: #1a1b26;
+    --text-color: #a9b1d6;
+    --header-color: #c0caf5;
+    --accent-color: #7aa2f7;
+    --border-color: #414868;
+    --pre-bg-color: #24283b;
+    --code-text-color: #c0caf5;
+    --copy-btn-bg: #565f89;
+    --copy-btn-hover-bg: #7aa2f7;
+    --copy-btn-color: #c0caf5;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: var(--header-color);
+    font-size: 2.5em;
+}
+
+h2 {
+    color: var(--header-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+h3 {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 40px 0;
+}
+
+code {
+    font-family: 'Source Code Pro', monospace;
+    background-color: var(--pre-bg-color);
+    color: var(--code-text-color);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre {
+    font-family: 'Source Code Pro', monospace;
+    background-color: var(--pre-bg-color);
+    color: var(--code-text-color);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    position: relative;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--copy-btn-bg);
+    color: var(--copy-btn-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+    opacity: 0.7;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+pre:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background-color: var(--copy-btn-hover-bg);
+}
