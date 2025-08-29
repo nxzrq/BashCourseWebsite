@@ -8,6 +8,9 @@
 </head>
 <body>
     <main>
+        <div class="theme-switcher-container">
+            <button id="theme-switcher" class="theme-btn">🌙</button>
+        </div>
         <header>
             <h1>The Ultimate Beginner's Guide to Bash Scripting</h1>
             <p class="subtitle">A comprehensive guide to learning Bash scripting for beginners. Start automating tasks and writing your own powerful scripts.</p>
@@ -54,7 +57,7 @@ echo "Hello, World!"</code></pre>
 
 # Variable declaration
 GREETING="Hello"
-USER="Gemini"
+USER="testprofile"
 
 # Using the variables
 echo "$GREETING, $USER!"
@@ -160,7 +163,8 @@ done
 # Looping over a range
 for i in {1..5}; do
   echo "Iteration number: ${i}"
-done</code></pre>
+done
+</code></pre>
 
             <h3>The <code>while</code> Loop</h3>
             <p>Continues as long as a condition is true. Uses <code>$((...))</code> for arithmetic.</p>
@@ -170,7 +174,8 @@ COUNTER=1
 while [ ${COUNTER} -le 5 ]; do
   echo "Counter is at: ${COUNTER}"
   COUNTER=$((COUNTER + 1))
-done</code></pre>
+done
+</code></pre>
 
             <h3>Loop Control: <code>break</code> and <code>continue</code></h3>
             <p><code>break</code> exits the loop. <code>continue</code> skips the current iteration.</p>
@@ -184,7 +189,8 @@ for i in {1..10}; do
     break # Stop the loop
   fi
   echo ${i}
-done</code></pre>
+done
+</code></pre>
         </section>
 
         <section id="chapter6">

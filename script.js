@@ -28,4 +28,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         });
     });
+
+    // Theme switcher logic
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const body = document.body;
+
+    themeSwitcher.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+        if (body.classList.contains('light-theme')) {
+            themeSwitcher.innerText = '☀️';
+        } else {
+            themeSwitcher.innerText = '🌙';
+        }
+    });
 });

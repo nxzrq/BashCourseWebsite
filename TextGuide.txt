@@ -80,7 +80,7 @@ Variables store data. In Bash, you define a variable by giving it a name and a v
 
 # Variable declaration
 GREETING="Hello"
-USER="Gemini"
+USER="testprofile"
 
 # Using the variables
 echo "$GREETING, $USER!" # Use double quotes to allow variable expansion
